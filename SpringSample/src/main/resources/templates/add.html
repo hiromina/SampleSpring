@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8"></meta>
+	<title>Add</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="/js/jquery.jsForm.js"></script>
+    <script th:src="@{/js/add.js}"></script>
+</head>
+<body>
+<script type="text/javascript"></script>
+	<h1>Add</h1>
+	<form id="frmMain" action="/insert">
+	<table>
+		<tr>
+			<td>Title</td><td>：</td>
+			<td><input type="text" name="title" th:value="${title_value}"/></td>
+		</tr>
+		<tr>
+			<td>Summary</td><td>：</td>
+			<td><input type="text" name="summary" th:value="${text2_value}" /></td>
+		</tr>
+		<tr>
+			<td>Status</td><td>：</td>
+			<td>
+				<select name="status" disabled>
+					<option value="0" th:selected="${status == 0}">ToDo</option>
+					<option value="1" th:selected="${status == 1}">Doing</option>
+					<option value="2" th:selected="${status == 2}">Done</option>
+				</select>
+			</td>
+		</tr>
+	</table>
+	<br/>
+	<input type="button" onclick="location.href='/return'" value=" Return"/>
+	<input type="submit" value="Add"/>
+	</form>
+	<div id="demo"></div>
+</body>
+</html>

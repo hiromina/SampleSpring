@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8"></meta>
+	<title>ToDo List</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script th:src="@{/js/list.js}"></script>
+</head>
+<body style="background:linear-gradient(to left top, #3a82de, #3eb9df);height:100vh;">
+	<div style="width:200px;background-color:#319ec9;text-align:center;border-radius:10px;">
+		<h1><font color="white">ToDo List</font></h1>
+	</div>
+	<div style="width:380px;background-color:#319ec9;text-align:center;border-radius:10px;">
+		<form method="post" action="/details">
+			<font color="white">Search：</font>
+			<input type="text" name="text3" th:value="${text3_value}" placeholder="Enter ID" style="text-align:right;"/>
+			<input type="submit" value="Show Detail"/>
+		</form>
+	</div>
+	<div style="display:flex;">
+		<div style="margin-top:30px;margin-left:10px;padding:20px;background-color:#e5eff5;width:300px;border-radius:10px;">
+		<b>ToDo</b>
+			<div th:each="stickies,iterStat : ${list}" th:id="'sticky'+${iterStat.index}"
+			 style="margin-top:10px;padding:10px;background-color:white;border-radius:10px;">
+			 	<a th:href="@{/details/{id}(id=${stickies.id})}">[[${stickies.title}]]</a>
+				<p th:text="${stickies.summary}"></p>
+			</div>
+			<div style="margin-top:10px;">
+				<input type="button" onclick="location.href='/add/0'" value=" Add"/>
+			</div>
+		</div>
+		<div style="margin-top:30px;margin-left:10px;padding:20px;background-color:#e5eff5;width:300px;border-radius:10px;">
+		<b>Doing</b>
+			<div th:each="stickies,iterStat : ${list1}" th:id="'sticky'+${iterStat.index}"
+			 style="margin-top:10px;padding:10px;background-color:white;border-radius:10px;">
+			 	<a th:href="@{/details/{id}(id=${stickies.id})}">[[${stickies.title}]]</a>
+				<p th:text="${stickies.summary}"></p>
+			</div>
+			<div style="margin-top:10px;">
+				<input type="button" onclick="location.href='/add/1'" value=" Add"/>
+			</div>
+		</div>
+		<div style="margin-top:30px;margin-left:10px;padding:20px;background-color:#e5eff5;width:300px;border-radius:10px;">
+		<b>Done</b>
+			<div th:each="stickies,iterStat : ${list2}" th:id="'sticky'+${iterStat.index}"
+			 style="margin-top:10px;padding:10px;background-color:white;border-radius:10px;">
+			 	<a th:href="@{/details/{id}(id=${stickies.id})}">[[${stickies.title}]]</a>
+				<p th:text="${stickies.summary}"></p>
+			</div>
+			<div style="margin-top:10px;">
+				<input type="button" onclick="location.href='/add/2'" value=" Add"/>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

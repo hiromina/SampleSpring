@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8"></meta>
+	<title>Details</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="/js/jquery.jsForm.js"></script>
+    <script th:src="@{/js/add.js}"></script>
+</head>
+<body>
+	<h1>Details</h1>
+	<form id="frmMain" method="post" th:action="@{/details/{id}(id=${id})}">
+		<table>
+			<tr>
+				<td>ID</td><td>：</td>
+				<td th:text="${id}"></td>
+			</tr>
+			<tr>
+				<td>Title</td><td>：</td>
+				<!-- <td th:text="${title}"></td> -->
+				<td><input type="text" name="title" th:value="${title}"/></td>
+			</tr>
+			<tr>
+				<td>Summary</td><td>：</td>
+				<!-- <td th:text="${summary}"></td> -->
+				<td><input type="text" name="summary" th:value="${summary}"/></td>
+			</tr>
+			<tr>
+				<td>Status</td><td>：</td>
+				<td>
+					<select name="status">
+						<option value="0" th:selected="${status == 0}">ToDo</option>
+						<option value="1" th:selected="${status == 1}">Doing</option>
+						<option value="2" th:selected="${status == 2}">Done</option>
+					</select>
+				</td>
+			</tr>
+		</table>
+		<br/>
+		<input type="button" onclick="location.href='/return'" value=" Return"/>
+		<input type="button" th:onclick="|location.href='@{/details/del/{id}(id=${id})}'|" value=" Delete"/>
+		<input type="submit" value=" Update"/>
+	</form>
+	<div id="demo"></div>
+</body>
+</html>
